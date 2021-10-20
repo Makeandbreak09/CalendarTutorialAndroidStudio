@@ -26,25 +26,27 @@
         android:ems="10"
         android:inputType="text"/>
 
-    <TextView
-        android:id="@+id/eventDateTV"
+    <Button
+        android:id="@+id/eventDateButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:text="Date"
         android:textSize="20sp"
+        android:onClick="openDatePicker"
         android:textAlignment="center"
         android:textColor="@color/black"/>
 
-    <TextView
-        android:id="@+id/eventTimeTV"
+    <Button
+        android:id="@+id/eventTimeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:text="Time"
         android:textSize="20sp"
+        android:onClick="openTimePicker"
         android:textAlignment="center"
         android:textColor="@color/black"/>
 
