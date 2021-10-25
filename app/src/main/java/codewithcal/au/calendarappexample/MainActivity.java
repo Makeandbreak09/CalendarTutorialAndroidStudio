@@ -8,11 +8,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import java.io.IOException;
+import java.security.GeneralSecurityException;
 import java.time.LocalDate;
-import java.time.YearMonth;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import static codewithcal.au.calendarappexample.CalendarUtils.daysInMonthArray;
@@ -20,6 +19,8 @@ import static codewithcal.au.calendarappexample.CalendarUtils.monthYearFromDate;
 
 public class MainActivity extends AppCompatActivity implements CalendarAdapter.OnItemListener
 {
+    private static final String CREDENTIALS_FILE_PATH = "credentials.json";
+
     private TextView monthYearText;
     private RecyclerView calendarRecyclerView;
 
@@ -32,6 +33,17 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
         initWidgets();
         CalendarUtils.selectedDate = LocalDate.now();
         setMonthView();
+
+        try {
+            CalendarQuickstart calendarQuickstart = new CalendarQuickstart();
+            calendarQuickstart.main(CalendarQuickstart.class.getResourceAsStream(CREDENTIALS_FILE_PATH), CREDENTIALS_FILE_PATH);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (GeneralSecurityException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(this.getApplicationInfo().dataDir);
     }
 
     private void initWidgets()
